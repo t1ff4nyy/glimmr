@@ -28,7 +28,7 @@
 
     <!-- Video container for barcode scanning -->
     <div id="scanner-container">
-        <video id="scanner" autoplay></video>
+        <video id="scanner" autoplay muted></video> <!-- Muted to avoid feedback -->
     </div>
 
     <script>
@@ -42,7 +42,9 @@
             // Access the camera (front camera for mobile)
             navigator.mediaDevices.getUserMedia({
                 video: {
-                    facingMode: "user" // Use the front camera (for mobile devices)
+                    facingMode: "user", // Try the front camera for mobile devices
+                    width: { ideal: 1280 },  // Try to request a high resolution (ideal)
+                    height: { ideal: 720 }  // Try for HD
                 }
             }).then(function(stream) {
                 console.log("Camera stream received");
