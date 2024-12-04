@@ -39,6 +39,7 @@
         function startScanner() {
             console.log("Starting camera...");
 
+            // Access the camera (front camera for mobile)
             navigator.mediaDevices.getUserMedia({
                 video: {
                     facingMode: "user" // Use the front camera (for mobile devices)
@@ -48,6 +49,7 @@
 
                 const videoElement = document.getElementById('scanner');
                 videoElement.srcObject = stream;  // Bind the stream to the video element
+                videoElement.play();
 
                 // Initialize Quagga
                 Quagga.init({
