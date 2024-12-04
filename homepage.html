@@ -3,77 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Scanner - glimmr</title>
-    <!-- Dynamsoft Barcode SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.1/dist/dbr.browser.mjs"></script>
+    <title>Barcode Scanner</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     <style>
-        /* Ensuring the video takes full screen */
         #scanner-container {
-            position: relative;
             width: 100%;
-            height: 100vh; /* 100% of viewport height */
-            background: black;
+            height: 100vh;
+            background-color: black;
+            position: relative;
         }
-
         video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the video covers the full area */
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
-    <h1>Scan Your Barcode Here</h1>
-    <p>Barcode Scanner Powered By GLIMMR</p>
+    <h1>Barcode Scanner</h1>
+    <div id="scanner-container"></div>
 
-    <!-- Video container for barcode scanning -->
-    <div id="scanner-container">
-        <video id="scanner" autoplay muted></video> <!-- Muted to avoid feedback -->
-        <canvas id="overlay"></canvas>
-    </div>
+    <script>
+        // Function to initialize and start the scanner
+        function startScanner() {
+            console.log("Initializing Quagga...");
 
-    <script type="module">
-        import { BarcodeScanner } from 'https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.1/dist/dbr.browser.mjs';
-
-        const ANUAPDCLEANSER = "8809640734427"; // Replace this with the barcode you want to detect
-
-        async function startScanner() {
-            console.log("Starting camera with Dynamsoft Barcode SDK...");
-
-            // Initialize the barcode scanner
-            const scanner = await BarcodeScanner.createInstance();
-            scanner.onFrameRead = results => {
-                for (const result of results) {
-                    console.log("Detected barcode: ", result.barcodeText);
-                    if (result.barcodeText === ANUAPDCLEANSER) {
-                        console.log("Navigating to product page...");
-                        window.location.href = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
-                    }
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scanner-container"),
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
+                },
+            }, function (err) {
+                if (err) {
+                    console.error("Quagga initialization failed: ", err);
+                    alert("Barcode scanner failed to initialize.");
+                    return;
                 }
-            };
 
-            scanner.onUnduplicatedRead = results => {
-                console.log("Final barcode detected: ", results[0]?.barcodeText || "No barcode");
-            };
-
-            // Bind video and overlay canvas
-            await scanner.setVideoSettings({
-                video: {
-                    facingMode: { exact: "environment" } // Switch to rear camera for scanning
-                }
+                console.log("Quagga initialized successfully.");
+                Quagga.start();
             });
 
-            const scannerContainer = document.getElementById('scanner-container');
-            const overlay = document.getElementById('overlay');
-            await scanner.setUIElement({ videoElement: scannerContainer, overlayElement: overlay });
-
-            await scanner.start(); // Start the scanner
+            Quagga.onDetected(function (result) {
+                const barcode = result.codeResult.code;
+                console.log("Barcode detected: ", barcode);
+                alert("Detected Barcode: " + barcode);
+            });
         }
 
         window.onload = startScanner;
