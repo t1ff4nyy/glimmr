@@ -11,14 +11,30 @@
         #scanner-container {
             position: relative;
             width: 100%;
-            height: 100vh; /* 100% of viewport height */
+            height: 100vh; /* Full viewport height */
             background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         video {
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the video covers the full area */
+            height: auto;
+            max-height: 100%; /* Keep video proportional within viewport */
+            object-fit: contain;
+            background-color: transparent;
+        }
+
+        h1, p {
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -28,74 +44,10 @@
 
     <!-- Video container for barcode scanning -->
     <div id="scanner-container">
-        <video id="scanner" autoplay muted></video> <!-- Muted to avoid feedback -->
+        <video id="scanner" autoplay playsinline muted></video> <!-- `playsinline` for iOS -->
     </div>
 
-    <script>
-        // Define the specific barcode you are looking for
-        const ANUAPDCLEANSER = "8809640734427"; // Replace this with the barcode you want to detect
-
-        // Function to start the barcode scanner
-        function startScanner() {
-            console.log("Starting camera...");
-
-            // Access the camera (front camera for mobile)
-            navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: "user", // Try the front camera for mobile devices
-                    width: { ideal: 1280 },  // Try to request a high resolution (ideal)
-                    height: { ideal: 720 }  // Try for HD
-                }
-            }).then(function(stream) {
-                console.log("Camera stream received");
-
-                const videoElement = document.getElementById('scanner');
-                videoElement.srcObject = stream;  // Bind the stream to the video element
-                videoElement.play();
-
-                // Initialize Quagga
-                Quagga.init({
-                    inputStream: {
-                        name: "Live",
-                        type: "LiveStream",
-                        target: videoElement, // Video element to show the camera feed
-                    },
-                    decoder: {
-                        readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"] // Supported barcode types
-                    }
-                }, function(err) {
-                    if (err) {
-                        console.error("Error starting Quagga: ", err);
-                        return;
-                    }
-                    console.log("Scanner initialized");
-                    Quagga.start();
-                });
-            }).catch(function(err) {
-                console.error("Error accessing the camera: ", err);
-                alert("Unable to access camera. Please make sure you have granted permission.");
-            });
-
-            // Barcode detected event
-            Quagga.onDetected(function(result) {
-                const barcode = result.codeResult.code;
-                console.log("Barcode detected: ", barcode);
-                
-                // Check if the detected barcode matches the specific barcode
-                if (barcode === ANUAPDCLEANSER) {
-                    console.log("Navigating..");
-                    
-                    // Navigate to the desired page
-                    window.location.href = `https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html`;
-                }
-            });
-        }
-
-        // Start the scanner when the page loads
-        window.onload = function() {
-            console.log("Page loaded, initializing scanner...");
-            startScanner();
-        };
-    </script>
+    <!-- Include external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
