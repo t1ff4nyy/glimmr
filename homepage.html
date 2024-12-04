@@ -24,7 +24,9 @@
     <div id="scanner-container"></div>
 
     <script>
-        // Function to initialize and start the scanner
+        const PRODUCT_BARCODE = "8809640734427"; // Replace with your barcode
+        const PRODUCT_PAGE_URL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
+
         function startScanner() {
             console.log("Initializing Quagga...");
 
@@ -48,10 +50,18 @@
                 Quagga.start();
             });
 
+            // Event listener for barcode detection
             Quagga.onDetected(function (result) {
                 const barcode = result.codeResult.code;
                 console.log("Barcode detected: ", barcode);
-                alert("Detected Barcode: " + barcode);
+
+                if (barcode === PRODUCT_BARCODE) {
+                    console.log("Navigating to product page...");
+                    alert("Barcode matched! Redirecting to product page.");
+                    window.location.href = PRODUCT_PAGE_URL;
+                } else {
+                    console.log("Barcode does not match predefined value.");
+                }
             });
         }
 
@@ -59,3 +69,5 @@
     </script>
 </body>
 </html>
+
+
