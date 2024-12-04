@@ -71,7 +71,6 @@
             }, function (err) {
                 if (err) {
                     console.error("Quagga initialization failed: ", err);
-                    alert("Barcode scanner failed to initialize.");
                     return;
                 }
 
@@ -86,7 +85,6 @@
 
                 if (barcode === PRODUCT_BARCODE) {
                     console.log("Navigating to product page...");
-                    alert("Navigating to product page..");
                     window.location.href = PRODUCT_PAGE_URL;
                 } else {
                     console.log("Barcode does not match predefined value.");
