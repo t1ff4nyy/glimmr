@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Scan Your Barcode Here</h1>
-    <p>Barcode Scanner Powered By QuaggaJS</p>
+    <p>Barcode Scanner Powered By GLIMMR</p>
 
     <!-- Video container for barcode scanning (hidden) -->
     <div id="scanner-container" style="display:none;">
@@ -17,6 +17,9 @@
     </div>
 
     <script>
+        // Define the specific barcode you are looking for
+        const ANUAPDCLEANSER = "8809640734427"; // Replace this with the barcode you want to detect
+
         // Function to start the barcode scanner
         function startScanner() {
             Quagga.init({
@@ -45,8 +48,13 @@
                 const barcode = result.codeResult.code;
                 console.log("Barcode detected: ", barcode);
                 
-                // Example: Navigate to another page based on the barcode
-                window.location.href = `https://www.example.com/${barcode}`;
+                // Check if the detected barcode matches the specific barcode
+                if (barcode === ANUAPDCLEANSER) {
+                    console.log("Navigating..");
+                    
+                    // Navigate to the desired page
+                    window.location.href = `https://www.example.com/${barcode}`;
+                }
             });
         }
 
@@ -55,5 +63,3 @@
     </script>
 </body>
 </html>
-</html>
-
