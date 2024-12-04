@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Scanner</title>
+    <title>Sephora Barcode Scanner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     <style>
         #scanner-container {
@@ -39,7 +39,8 @@
     </style>
 </head>
 <body>
-    <h1>Barcode Scanner</h1>
+    <h1>Scan Your Barcode Here</h1>
+    <p>Sephora Barcode Scanner Powered By glimmr</p>
     <div id="scanner-container">
         <!-- Video feed -->
         <div id="scanner-overlay"></div>
@@ -58,7 +59,7 @@
                     type: "LiveStream",
                     target: document.querySelector("#scanner-container"),
                     constraints: {
-                        facingMode: "user", // Use the front camera
+                        facingMode: "environment", // Use the back camera
                         width: { ideal: 1280 },
                         height: { ideal: 720 },
                     }
