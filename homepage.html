@@ -12,7 +12,7 @@
     <p>Barcode Scanner Powered By GLIMMR</p>
 
     <!-- Video container for barcode scanning -->
-    <div id="scanner-container">
+    <div id="scanner-container" style="width: 100%; height: 400px;">
         <video id="scanner" width="100%" height="100%" autoplay></video>
     </div>
 
@@ -22,12 +22,15 @@
 
         // Function to start the barcode scanner
         function startScanner() {
-            // Access the camera and set up Quagga
+            console.log("Starting camera...");
+            
             navigator.mediaDevices.getUserMedia({
                 video: {
                     facingMode: "user" // Use the front camera (for mobile devices)
                 }
             }).then(function(stream) {
+                console.log("Camera stream received");
+
                 const videoElement = document.getElementById('scanner');
                 videoElement.srcObject = stream;  // Bind the stream to the video element
 
@@ -70,11 +73,10 @@
         }
 
         // Start the scanner when the page loads
-        window.onload = startScanner;
-    </script>
-</body>
-</html>
-        window.onload = startScanner;
+        window.onload = function() {
+            console.log("Page loaded, initializing scanner...");
+            startScanner();
+        };
     </script>
 </body>
 </html>
