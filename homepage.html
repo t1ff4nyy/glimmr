@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sephora Scanner</title>
+    <title>Barcode Scanner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     <style>
         #scanner-container {
@@ -11,18 +11,39 @@
             height: 100vh;
             background-color: black;
             position: relative;
+            overflow: hidden;
         }
         video {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+        /* Add a visual overlay (scanner line) */
+        #scanner-overlay {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            animation: scan-line 2s infinite;
+        }
+        @keyframes scan-line {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(50px);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Scan Your Barcode Here</h1>
-    <p>Sephora Barcode Scanner Powered By glimmr</p>
-    <div id="scanner-container"></div>
+    <h1>Barcode Scanner</h1>
+    <div id="scanner-container">
+        <!-- Video feed -->
+        <div id="scanner-overlay"></div>
+    </div>
 
     <script>
         const PRODUCT_BARCODE = "8809640734427"; // Replace with your barcode
@@ -36,10 +57,16 @@
                     name: "Live",
                     type: "LiveStream",
                     target: document.querySelector("#scanner-container"),
+                    constraints: {
+                        facingMode: "user", // Use the front camera
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                    }
                 },
                 decoder: {
                     readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
                 },
+                locate: true // Enable locating the barcode for better accuracy
             }, function (err) {
                 if (err) {
                     console.error("Quagga initialization failed: ", err);
@@ -70,5 +97,3 @@
     </script>
 </body>
 </html>
-
-
