@@ -59,7 +59,7 @@
                     type: "LiveStream",
                     target: document.querySelector("#scanner-container"),
                     constraints: {
-                        facingMode: "environment", // Use the back camera
+                        facingMode: "user", // Use the front camera
                         width: { ideal: 1280 },
                         height: { ideal: 720 },
                     }
@@ -86,7 +86,7 @@
 
                 if (barcode === PRODUCT_BARCODE) {
                     console.log("Navigating to product page...");
-                    alert("Barcode matched! Redirecting to product page.");
+                    alert("Navigating to product page..");
                     window.location.href = PRODUCT_PAGE_URL;
                 } else {
                     console.log("Barcode does not match predefined value.");
