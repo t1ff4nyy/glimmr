@@ -51,7 +51,7 @@
         const APDCF = "8809640734427"; // Replace with your barcode
         const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
         const S1MCHCSS = "8809576261592";
-        const S1MCHCSS = "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html";
+        const S1MCHCSSURL = "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html";
 
         function startScanner() {
             console.log("Initializing Quagga...");
@@ -88,13 +88,13 @@
 
                 if (barcode === APDCF) {
                     console.log("Navigating to product page...");
-                    window.location.href = PRODUCT_PAGE_URL;
+                    window.location.href = APDCFURL;
                 } else {
                     console.log("Barcode does not match predefined value.");
                 }
                 if (barcode === S1MCHCSS) {
                     console.log("Navigating to product page...");
-                    window.location.href = PRODUCT_PAGE_URL;
+                    window.location.href = S1MCHCSSURL;
                 } else {
                     console.log("Barcode does not match predefined value.");
                 }
