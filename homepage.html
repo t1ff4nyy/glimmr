@@ -6,40 +6,19 @@
     <title>Sephora Barcode Scanner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     <style>
+        /* Completely hide the scanner container and overlay */
         #scanner-container {
-            width: 100%;
-            height: 100vh;
-            background-color: black;
-            position: relative;
-            overflow: hidden;
-        }
-        /* Hide video feed but keep it functional */
-        video {
             display: none;
         }
-        /* Add a visual overlay (scanner line) */
         #scanner-overlay {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: red;
-            animation: scan-line 2s infinite;
-        }
-        @keyframes scan-line {
-            from {
-                transform: translateY(-50px);
-            }
-            to {
-                transform: translateY(50px);
-            }
+            display: none;
         }
     </style>
 </head>
 <body>
     <h1>Scan Your Barcode Here</h1>
     <p>Sephora Barcode Scanner Powered By glimmr</p>
+
     <div id="scanner-container">
         <div id="scanner-overlay"></div>
     </div>
@@ -57,7 +36,7 @@
                 inputStream: {
                     name: "Live",
                     type: "LiveStream",
-                    target: document.querySelector("#scanner-container"),
+                    target: document.querySelector("#scanner-container"), // Hidden element
                     constraints: {
                         facingMode: "user", // Use the front camera
                         width: { ideal: 1280 },
