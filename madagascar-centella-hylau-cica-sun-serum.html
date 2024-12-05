@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #ingredients-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .ingredient-btn {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: left;
+        }
+        .ingredient-btn:hover {
+            background-color: #e0e0e0;
+        }
+        #info-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #f9f9f9;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: none; /* Hidden by default */
+            overflow-y: auto;
+        }
+        #info-panel h2 {
+            margin-top: 0;
+        }
+        #info-panel .close-btn {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum SPF50+ PA++++</h1>
+    <p><strong>Price:</strong> $12.65</p>
+
+    <p><strong>Key Ingredients:</strong></p>
+    <div id="ingredients-container">
+        <button class="ingredient-btn" data-ingredient="Heartleaf">Heartleaf</button>
+        <button class="ingredient-btn" data-ingredient="Quercetinol">Quercetinol</button>
+        <button class="ingredient-btn" data-ingredient="Centella Asiatica">Centella Asiatica</button>
+        <button class="ingredient-btn" data-ingredient="Green Tea Extract">Green Tea Extract</button>
+    </div>
+
+    <a href="homepage.html">Go Back to Home</a>
+
+    <!-- Right-side panel for ingredient details -->
+    <div id="info-panel">
+        <button class="close-btn" onclick="closePanel()">Close</button>
+        <h2 id="ingredient-name">Ingredient Name</h2>
+        <p id="ingredient-description">Description will appear here.</p>
+    </div>
+
+    <script>
+        // Ingredient descriptions
+        const ingredientDescriptions = {
+            "Heartleaf": "Heartleaf is known for its anti-inflammatory properties and is great for soothing irritated skin.",
+            "Quercetinol": "Quercetinol is a powerful antioxidant that helps protect the skin from environmental damage.",
+            "Centella Asiatica": "Centella Asiatica promotes healing and improves skin elasticity, making it a popular choice for skincare.",
+            "Green Tea Extract": "Green Tea Extract is rich in antioxidants and helps reduce signs of aging while calming the skin."
+        };
+
+        // Open panel with ingredient details
+        document.querySelectorAll('.ingredient-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const ingredient = button.getAttribute('data-ingredient');
+                document.getElementById('ingredient-name').innerText = ingredient;
+                document.getElementById('ingredient-description').innerText = ingredientDescriptions[ingredient] || "Description not available.";
+                document.getElementById('info-panel').style.display = 'block';
+            });
+        });
+
+        // Close panel
+        function closePanel() {
+            document.getElementById('info-panel').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
