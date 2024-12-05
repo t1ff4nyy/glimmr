@@ -86,7 +86,13 @@
                 const barcode = result.codeResult.code;
                 console.log("Barcode detected: ", barcode);
 
-                if (barcode === PRODUCT_BARCODE) {
+                if (barcode === APDCF) {
+                    console.log("Navigating to product page...");
+                    window.location.href = PRODUCT_PAGE_URL;
+                } else {
+                    console.log("Barcode does not match predefined value.");
+                }
+                if (barcode === S1MCHCSS) {
                     console.log("Navigating to product page...");
                     window.location.href = PRODUCT_PAGE_URL;
                 } else {
