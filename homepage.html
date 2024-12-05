@@ -13,11 +13,37 @@
             position: relative;
             overflow: hidden;
         }
+        /* Hide video feed but keep it functional */
+        video {
+            display: none;
+        }
+        /* Add a visual overlay (scanner line) */
+        #scanner-overlay {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            animation: scan-line 2s infinite;
+        }
+        @keyframes scan-line {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(50px);
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Scan Your Barcode Here</h1>
     <p>Sephora Barcode Scanner Powered By glimmr</p>
+    <div id="scanner-container">
+        <div id="scanner-overlay"></div>
+    </div>
+
     <script>
         const APDCF = "8809640734427"; // Replace with your barcode
         const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
@@ -28,6 +54,16 @@
             console.log("Initializing Quagga...");
 
             Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scanner-container"),
+                    constraints: {
+                        facingMode: "user", // Use the front camera
+                        width: { ideal: 1280 },
+                        height: { ideal: 1080 },
+                    }
+                },
                 decoder: {
                     readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
                 },
@@ -50,10 +86,7 @@
                 if (barcode === APDCF) {
                     console.log("Navigating to product page...");
                     window.location.href = APDCFURL;
-                } else {
-                    console.log("Barcode does not match predefined value.");
-                }
-                if (barcode === S1MCHCSS) {
+                } else if (barcode === S1MCHCSS) {
                     console.log("Navigating to product page...");
                     window.location.href = S1MCHCSSURL;
                 } else {
