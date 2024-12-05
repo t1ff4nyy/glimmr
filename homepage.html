@@ -13,40 +13,12 @@
             position: relative;
             overflow: hidden;
         }
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        /* Add a visual overlay (scanner line) */
-        #scanner-overlay {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: red;
-            animation: scan-line 2s infinite;
-        }
-        @keyframes scan-line {
-            from {
-                transform: translateY(-50px);
-            }
-            to {
-                transform: translateY(50px);
-            }
-        }
     </style>
 </head>
 <body>
     <h1>Scan Your Barcode Here</h1>
     <p>Sephora Barcode Scanner Powered By glimmr</p>
     <div id="scanner-container">
-        <!-- Video feed -->
-        <div id="scanner-overlay"></div>
-    </div>
-    <div id="scanner-container" style="width: 100%; height: 100vh; background: black;"></div>
-
     <script>
         const APDCF = "8809640734427"; // Replace with your barcode
         const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
@@ -61,11 +33,6 @@
                     name: "Live",
                     type: "LiveStream",
                     target: document.querySelector("#scanner-container"),
-                    constraints: {
-                        facingMode: "user", // Use the front camera
-                        width: { ideal: 1280 },
-                        height: { ideal: 1080 },
-                    }
                 },
                 decoder: {
                     readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
