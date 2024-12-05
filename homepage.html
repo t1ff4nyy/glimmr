@@ -18,7 +18,6 @@
 <body>
     <h1>Scan Your Barcode Here</h1>
     <p>Sephora Barcode Scanner Powered By glimmr</p>
-    <div id="scanner-container">
     <script>
         const APDCF = "8809640734427"; // Replace with your barcode
         const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
@@ -29,11 +28,6 @@
             console.log("Initializing Quagga...");
 
             Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector("#scanner-container"),
-                },
                 decoder: {
                     readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
                 },
