@@ -18,15 +18,22 @@
 
         .container {
             display: flex;
+            flex-direction: column; /* Stack main content and bottom bar vertically */
             height: 100vh;
             width: 100%;
         }
 
-        /* Striped Sidebar */
-        .striped-sidebar {
+        /* Main Content Container with Sidebar */
+        .main-content-container {
+            display: flex;
+            flex: 1; /* Takes up most of the height */
+        }
+
+        /* Striped Sidebar on the Right */
+        .striped-sidebar-right {
             width: 20%;
             background: repeating-linear-gradient(
-                90deg,
+                180deg, /* Vertical stripes */
                 black 0,
                 black 15px,
                 white 15px,
@@ -34,9 +41,9 @@
             );
         }
 
-        /* Main Content */
+        /* Main Content Area */
         .main-content {
-            flex: 1;
+            flex: 1; /* Takes up remaining width */
             position: relative;
             background: url('https://akns-images.eonline.com/eol_images/Entire_Site/2024931/rs_1024x759-241031173455-Sephora_Sale_2.jpg?fit=around%7C1024:759&output-quality=90&crop=1024:759;center,top') no-repeat center center;
             background-size: cover;
@@ -48,6 +55,19 @@
             text-align: center;
         }
 
+        /* Horizontal Striped Bar at the Bottom */
+        .striped-bar-bottom {
+            height: 20%; /* Adjust height */
+            background: repeating-linear-gradient(
+                0deg, /* Horizontal stripes */
+                black 0,
+                black 15px,
+                white 15px,
+                white 30px
+            );
+        }
+
+        /* Header Text */
         .header-text h1 {
             margin: 0;
             font-size: 3.5rem;
@@ -62,6 +82,7 @@
             font-weight: lighter;
         }
 
+        /* Footer Text */
         .footer-text h3 {
             margin: 5px 0;
             font-size: 2.5rem;
@@ -69,7 +90,7 @@
             text-transform: uppercase;
         }
 
-        /* Hide Scanner Container Completely */
+        /* Hide Scanner Container */
         #scanner-container {
             display: none;
         }
@@ -77,26 +98,32 @@
 </head>
 <body>
     <div class="container">
-        <!-- Striped Sidebar -->
-        <div class="striped-sidebar"></div>
+        <!-- Main Content and Right Sidebar -->
+        <div class="main-content-container">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Header Text -->
+                <div class="header-text">
+                    <h1>SEPHORA SALE</h1>
+                    <h2>2024</h2>
+                </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Header Text -->
-            <div class="header-text">
-                <h1>SEPHORA SALE</h1>
-                <h2>2024</h2>
+                <!-- Scanner Container (Hidden) -->
+                <div id="scanner-container"></div>
+
+                <!-- Footer Text -->
+                <div class="footer-text">
+                    <h3>Scan Your</h3>
+                    <h3>Barcode Here</h3>
+                </div>
             </div>
 
-            <!-- Scanner Container (Hidden) -->
-            <div id="scanner-container"></div>
-
-            <!-- Footer Text -->
-            <div class="footer-text">
-                <h3>Scan Your</h3>
-                <h3>Barcode Here</h3>
-            </div>
+            <!-- Right Striped Sidebar -->
+            <div class="striped-sidebar-right"></div>
         </div>
+
+        <!-- Horizontal Striped Bar at the Bottom -->
+        <div class="striped-bar-bottom"></div>
     </div>
 
     <script>
