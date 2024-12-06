@@ -16,78 +16,40 @@
             font-family: 'Arial', sans-serif;
         }
 
-        .container {
-            display: flex;
-            flex-direction: column; /* Stack main content and bottom bar vertically */
-            height: 100vh;
+        /* Black Top Bar with Logo */
+        .top-bar {
+            background-color: black;
+            height: 60px;
             width: 100%;
-        }
-
-        /* Main Content Container with Sidebar */
-        .main-content-container {
             display: flex;
-            flex: 1; /* Takes up most of the height */
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
-        /* Striped Sidebar on the Left */
-        .striped-sidebar-left {
-            width: 20%;
-            background: repeating-linear-gradient(
-                180deg, /* Vertical stripes */
-                #383737 0,
-                #383737 40px, /* Thicker black stripe */
-                white 40px,
-                white 80px /* Thicker white stripe */
-            );
+        .top-bar img {
+            height: 40px;
         }
 
         /* Main Content Area */
         .main-content {
-            flex: 1; /* Takes up remaining width */
-            position: relative;
+            height: calc(100vh - 60px); /* Full height minus the top bar */
+            width: 100%;
             background: url('https://akns-images.eonline.com/eol_images/Entire_Site/2024931/rs_1024x759-241031173455-Sephora_Sale_2.jpg?fit=around%7C1024:759&output-quality=90&crop=1024:759;center,top') no-repeat center center;
             background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px;
+            position: relative;
+        }
+
+        /* Text at Top-Left */
+        .barcode-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             color: white;
-            text-align: center;
-        }
-
-        /* Horizontal Striped Bar at the Bottom */
-        .striped-bar-bottom {
-            height: 20%; /* Adjust height */
-            background: repeating-linear-gradient(
-                0deg, /* Horizontal stripes */
-                #383737 0,
-                #383737 40px, /* Thicker black stripe */
-                white 40px,
-                white 80px /* Thicker white stripe */
-            );
-        }
-
-        /* Header Text */
-        .header-text h1 {
-            margin: 0;
-            font-size: 3.5rem;
+            font-size: 2rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .header-text h2 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: lighter;
-        }
-
-        /* Footer Text */
-        .footer-text h3 {
-            margin: 5px 0;
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Hide Scanner Container */
@@ -97,32 +59,14 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Left Striped Sidebar -->
-        <div class="main-content-container">
-            <div class="striped-sidebar-left"></div>
+    <!-- Black Top Bar -->
+    <div class="top-bar">
+        <img src="sephora-logo.png" alt="Sephora Logo">
+    </div>
 
-            <!-- Main Content -->
-            <div class="main-content">
-                <!-- Header Text -->
-                <div class="header-text">
-                    <h1>SEPHORA SALE</h1>
-                    <h2>2024</h2>
-                </div>
-
-                <!-- Scanner Container (Hidden) -->
-                <div id="scanner-container"></div>
-
-                <!-- Footer Text -->
-                <div class="footer-text">
-                    <h3>Scan Your</h3>
-                    <h3>Barcode Here</h3>
-                </div>
-            </div>
-        </div>
-
-        <!-- Horizontal Striped Bar at the Bottom -->
-        <div class="striped-bar-bottom"></div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="barcode-text">Scan Your Barcode Here</div>
     </div>
 
     <script>
