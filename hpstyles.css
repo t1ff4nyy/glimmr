@@ -1,84 +1,66 @@
-/* General Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sephora Barcode Scanner</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
 
-.container {
-    display: flex;
-    flex-direction: column; /* Stack content and bottom stripes vertically */
-    height: 100vh;
-    width: 100%;
-}
+        /* Black Bar with Sephora Logo */
+        .top-bar {
+            background-color: black;
+            height: 60px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
 
-/* Main Content with Right Striped Sidebar */
-.main-content-container {
-    display: flex;
-    flex: 1; /* Take up remaining vertical space */
-    width: 100%;
-}
+        .top-bar img {
+            height: 40px;
+        }
 
-/* Striped Sidebar on the Right */
-.striped-sidebar-right {
-    width: 20%; /* Adjust to control sidebar size */
-    background: repeating-linear-gradient(
-        180deg, /* Horizontal stripes */
-        black 0,
-        black 15px,
-        white 15px,
-        white 30px
-    );
-}
+        /* Main Container */
+        .container {
+            height: calc(100vh - 60px); /* Full height minus top bar */
+            width: 100%;
+            background: url('makeup-background.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
 
-/* Main Content */
-.main-content {
-    flex: 1; /* Fill space not taken by the right sidebar */
-    position: relative;
-    background: url('makeup-background.jpg') no-repeat center center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    color: white;
-    text-align: center;
-}
+        /* Barcode Text */
+        .barcode-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar with Sephora Logo -->
+    <div class="top-bar">
+        <img src="sephora-logo.png" alt="Sephora Logo">
+    </div>
 
-/* Striped Bar Below Main Content */
-.striped-bar-bottom {
-    height: 20%; /* Adjust to control bar height */
-    background: repeating-linear-gradient(
-        0deg, /* Horizontal stripes */
-        black 0,
-        black 15px,
-        white 15px,
-        white 30px
-    );
-}
-
-/* Header Text */
-.header-text h1 {
-    margin: 0;
-    font-size: 3.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.header-text h2 {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: lighter;
-}
-
-/* Footer Text */
-.footer-text h3 {
-    margin: 5px 0;
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="barcode-text">Scan Your Barcode Here</div>
+    </div>
+</body>
+</html>
