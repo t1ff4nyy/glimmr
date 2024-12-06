@@ -52,7 +52,7 @@ body, html {
 .striped-bar-bottom {
     height: 20%; /* Adjust to control bar height */
     background: repeating-linear-gradient(
-        90deg, /* Horizontal stripes */
+        0deg, /* Horizontal stripes */
         black 0,
         black 15px,
         white 15px,
