@@ -16,7 +16,7 @@
             font-family: 'Arial', sans-serif;
         }
 
-        /* Black Top Bar with Logo */
+        /* Black Top Bar with Sephora Logo */
         .top-bar {
             background-color: black;
             height: 60px;
@@ -32,7 +32,7 @@
         }
 
         /* Main Content Area */
-        .main-content {
+        .container {
             height: calc(100vh - 60px); /* Full height minus the top bar */
             width: 100%;
             background: url('https://akns-images.eonline.com/eol_images/Entire_Site/2024931/rs_1024x759-241031173455-Sephora_Sale_2.jpg?fit=around%7C1024:759&output-quality=90&crop=1024:759;center,top') no-repeat center center;
@@ -40,7 +40,7 @@
             position: relative;
         }
 
-        /* Text at Top-Left */
+        /* Barcode Text */
         .barcode-text {
             position: absolute;
             top: 20px;
@@ -52,7 +52,7 @@
             letter-spacing: 1px;
         }
 
-        /* Hide Scanner Container */
+        /* Scanner Container (Hidden initially) */
         #scanner-container {
             display: none;
         }
@@ -65,14 +65,15 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
+    <div class="container">
         <div class="barcode-text">Scan Your Barcode Here</div>
+        <div id="scanner-container"></div>
     </div>
 
     <script>
-        const APDCF = "8809640734427"; // Replace with your barcode
+        const APDCF = "8809640734427"; // Barcode for product 1
         const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
-        const S1MCHCSS = "8809576261592";
+        const S1MCHCSS = "8809576261592"; // Barcode for product 2
         const S1MCHCSSURL = "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html";
 
         function startScanner() {
@@ -84,9 +85,9 @@
                     type: "LiveStream",
                     target: document.querySelector("#scanner-container"), // Scanner element
                     constraints: {
-                        facingMode: "user", // Use the front camera
+                        facingMode: "environment", // Use back camera
                         width: { ideal: 1280 },
-                        height: { ideal: 1080 },
+                        height: { ideal: 720 },
                     }
                 },
                 decoder: {
@@ -115,7 +116,7 @@
                     console.log("Navigating to product page...");
                     window.location.href = S1MCHCSSURL;
                 } else {
-                    console.log("Barcode does not match predefined value.");
+                    console.log("Barcode does not match predefined values.");
                 }
             });
         }
