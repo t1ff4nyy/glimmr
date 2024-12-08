@@ -12,6 +12,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     searchInput.addEventListener('input', disableDropdown);
 
+    // Sidebar and ingredient handling
+    const ingredientDescriptions = {
+        "Heartleaf": "Heartleaf is known for its anti-inflammatory properties and is great for soothing irritated skin.",
+        "Quercetinol": "Quercetinol is a powerful antioxidant that helps protect the skin from environmental damage.",
+        "Centella Asiatica": "Centella Asiatica promotes healing and improves skin elasticity, making it a popular choice for skincare.",
+        "Green Tea Extract": "Green Tea Extract is rich in antioxidants and helps reduce signs of aging while calming the skin."
+    };
+
+    // Open sidebar with ingredient details
+    document.querySelectorAll('.ingredient').forEach(ingredient => {
+        ingredient.addEventListener('click', () => {
+            const ingredientName = ingredient.innerText;
+            const description = ingredientDescriptions[ingredientName] || "Description not available.";
+            document.getElementById('ingredient-name').innerText = ingredientName;
+            document.getElementById('ingredient-description').innerText = description;
+
+            // Open sidebar
+            document.querySelector('.sidebar').classList.add('open');
+        });
+    });
+
+    // Close sidebar
+    document.querySelector('.close-btn').addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.remove('open');
+    });
+
+    // Barcode scanner
     function startScanner() {
         console.log("Initializing Quagga...");
 
