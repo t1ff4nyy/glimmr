@@ -16,3 +16,26 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
+
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* Add this */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position the dropdown below the search bar */
+    left: 0;
+    width: 100%; /* Match the width of the parent container */
+    max-width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
