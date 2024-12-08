@@ -71,16 +71,29 @@
             top: 20px;
         }
 
+        /* Scanner Container */
+        #scanner-container {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            z-index: 1;
+            margin-top: 30px;
+            border: 2px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
         /* Search Section */
         .search-section {
             width: 100%;
             max-width: 600px;
             text-align: center;
             z-index: 1;
-            margin-top: 410px;
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center-align the search section */
+            align-items: center;
         }
 
         .search-section p {
@@ -134,14 +147,14 @@
         /* Dropdown Menu */
         .dropdown-menu {
             position: absolute;
-            top: 100%; /* Position dropdown directly below the search bar */
+            top: 100%;
             left: 0;
             width: 100%;
             background-color: white;
             border-radius: 5px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             z-index: 2;
-            display: none; /* Initially hidden */
+            display: none;
             max-height: 200px;
             overflow-y: auto;
         }
@@ -193,6 +206,52 @@
             { name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum", keyword: "madagascar", url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html" }
         ];
 
+        const barcodes = {
+            "8809640734427": "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html",
+            "8809576261592": "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html"
+        };
+
+        function startScanner() {
+            console.log("Initializing Quagga...");
+
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scanner-container"),
+                    constraints: {
+                        facingMode: "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                    }
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
+                },
+                locate: true
+            }, function (err) {
+                if (err) {
+                    console.error("Quagga initialization failed: ", err);
+                    return;
+                }
+
+                console.log("Quagga initialized successfully.");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function (result) {
+                const barcode = result.codeResult.code;
+                console.log("Barcode detected: ", barcode);
+
+                if (barcodes[barcode]) {
+                    console.log("Navigating to product page...");
+                    window.location.href = barcodes[barcode];
+                } else {
+                    console.log("Barcode does not match predefined values.");
+                }
+            });
+        }
+
         function searchProducts() {
             const query = document.getElementById("search-input").value.toLowerCase();
             const dropdown = document.getElementById("dropdown");
@@ -214,11 +273,13 @@
                     dropdown.style.display = 'none';
                 }
             } else {
-                dropdown.style.display = 'none'; // Hide dropdown if no input
+                dropdown.style.display = 'none';
             }
         }
 
         document.getElementById("search-input").addEventListener("input", searchProducts);
+
+        window.onload = startScanner;
     </script>
 </body>
 </html>
