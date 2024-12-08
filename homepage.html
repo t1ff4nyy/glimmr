@@ -78,6 +78,9 @@
             text-align: center;
             z-index: 1;
             margin-top: 410px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center-align the search section */
         }
 
         .search-section p {
@@ -93,7 +96,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            position: relative; /* Position the container relative for dropdown alignment */
+            position: relative;
             width: 100%;
             max-width: 400px;
         }
@@ -138,7 +141,7 @@
             border-radius: 5px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             z-index: 2;
-            display: none;
+            display: none; /* Initially hidden */
             max-height: 200px;
             overflow-y: auto;
         }
@@ -195,18 +198,23 @@
             const dropdown = document.getElementById("dropdown");
             dropdown.innerHTML = '';
 
-            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-            if (filteredProducts.length > 0) {
-                dropdown.style.display = 'block';
-                filteredProducts.forEach(product => {
-                    const item = document.createElement("div");
-                    item.className = "dropdown-item";
-                    item.innerHTML = product.name.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
-                    item.onclick = () => window.location.href = product.url;
-                    dropdown.appendChild(item);
-                });
+            if (query.length > 0) {
+                const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+
+                if (filteredProducts.length > 0) {
+                    dropdown.style.display = 'block';
+                    filteredProducts.forEach(product => {
+                        const item = document.createElement("div");
+                        item.className = "dropdown-item";
+                        item.innerHTML = product.name.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
+                        item.onclick = () => window.location.href = product.url;
+                        dropdown.appendChild(item);
+                    });
+                } else {
+                    dropdown.style.display = 'none';
+                }
             } else {
-                dropdown.style.display = 'none';
+                dropdown.style.display = 'none'; // Hide dropdown if no input
             }
         }
 
