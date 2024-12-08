@@ -1,0 +1,18 @@
+/* Adjust dropdown to appear directly below the search bar */
+.dropdown-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.dropdown-list {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 50px; /* Adjust based on the height of the search bar */
+    left: 0;
+    background-color: white;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
