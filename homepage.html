@@ -126,42 +126,45 @@
             width: 25px;
         }
 
-        /* Dropdown Menu */
-        .dropdown-menu {
-            position: absolute;
-            top: 105px; /* Adjust based on the search bar position */
-            left: 20px;
-            width: 90%;
+        /* Dropdown List */
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+            width: 80%;
             max-width: 400px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-            display: none;
-            max-height: 200px;
-            overflow-y: auto;
         }
 
-        .dropdown-item {
+        .dropdown-list {
+            display: none;
+            position: absolute;
+            top: 100%; /* This ensures the dropdown appears below the search bar */
+            left: 0;
+            background-color: white;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .dropdown-list a {
+            display: block;
             padding: 10px;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
+            text-decoration: none;
+            color: black;
             font-size: 1rem;
             text-align: left;
         }
 
-        .dropdown-item:hover {
-            background-color: #f0f0f0;
+        .dropdown-list a:hover {
+            background-color: #f5f5f5;
         }
 
         .highlight {
             font-weight: bold;
         }
 
-        /* Scanner Container (Hidden initially) */
-        #scanner-container {
-            display: none;
-        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -179,51 +182,123 @@
         <div class="search-section">
             <p>Or search for your product</p>
             <div class="search-bar-container">
-                <input id="search-input" class="search-bar" type="text" placeholder="Enter product name or barcode" oninput="searchProducts()">
+                <input id="search-bar" class="search-bar" type="text" placeholder="Enter product name or barcode">
                 <button class="search-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon">
                 </button>
             </div>
-            <div id="dropdown" class="dropdown-menu"></div>
+            <div class="dropdown-container">
+                <div id="dropdown-list" class="dropdown-list"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Products data
         const products = [
-            { name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam", keyword: "quercetinol", url: "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html" },
-            { name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum", keyword: "madagascar", url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html" }
+            {
+                name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam",
+                barcode: "8809640734427",
+                url: "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html"
+            },
+            {
+                name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum",
+                barcode: "8809576261592",
+                url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html"
+            }
         ];
 
-        // Search function to filter products and show matching dropdown
-        function searchProducts() {
-            const query = document.getElementById("search-input").value.toLowerCase();
-            const dropdown = document.getElementById("dropdown");
+        const searchInput = document.getElementById('search-bar');
+        const dropdownList = document.getElementById('dropdown-list');
 
-            // Clear previous suggestions
-            dropdown.innerHTML = '';
+        // Function to display dropdown items based on search input
+        function displayDropdownItems(keyword) {
+            dropdownList.innerHTML = ''; // Clear previous results
+            if (!keyword) {
+                dropdownList.style.display = 'none';
+                return;
+            }
 
-            // Filter products by query
-            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(keyword.toLowerCase())
+            );
 
             if (filteredProducts.length > 0) {
-                dropdown.style.display = 'block';
+                dropdownList.style.display = 'block';
                 filteredProducts.forEach(product => {
-                    const item = document.createElement("div");
-                    item.className = "dropdown-item";
-                    item.innerHTML = product.name.replace(new RegExp(query, 'gi'), (match) => `<span class="highlight">${match}</span>`);
-                    item.onclick = () => window.location.href = product.url;
-                    dropdown.appendChild(item);
+                    const item = document.createElement('a');
+                    const highlightedName = product.name.replace(new RegExp(keyword, 'gi'), match => `<span class="highlight">${match}</span>`);
+                    item.innerHTML = highlightedName;
+                    item.href = product.url;
+                    item.target = '_blank';
+                    dropdownList.appendChild(item);
                 });
             } else {
-                dropdown.style.display = 'none';
+                dropdownList.style.display = 'none';
             }
         }
 
-        window.onload = () => {
-            // Initialize Quagga scanner if needed
-            // startScanner();
-        };
+        searchInput.addEventListener('input', function() {
+            const keyword = searchInput.value;
+            displayDropdownItems(keyword);
+        });
+
+        window.addEventListener('click', function(event) {
+            if (!dropdownList.contains(event.target) && event.target !== searchInput) {
+                dropdownList.style.display = 'none';
+            }
+        });
+
+        // Barcode scanning functionality (unchanged)
+        const APDCF = "8809640734427";
+        const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
+        const S1MCHCSS = "8809576261592";
+        const S1MCHCSSURL = "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html";
+
+        function startScanner() {
+            console.log("Initializing Quagga...");
+
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scanner-container"),
+                    constraints: {
+                        facingMode: "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                    }
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
+                },
+                locate: true
+            }, function (err) {
+                if (err) {
+                    console.error("Quagga initialization failed: ", err);
+                    return;
+                }
+
+                console.log("Quagga initialized successfully.");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function (result) {
+                const barcode = result.codeResult.code;
+                console.log("Barcode detected: ", barcode);
+
+                if (barcode === APDCF) {
+                    console.log("Navigating to product page...");
+                    window.location.href = APDCFURL;
+                } else if (barcode === S1MCHCSS) {
+                    console.log("Navigating to product page...");
+                    window.location.href = S1MCHCSSURL;
+                } else {
+                    console.log("Barcode does not match predefined values.");
+                }
+            });
+        }
+
+        window.onload = startScanner;
     </script>
 </body>
 </html>
