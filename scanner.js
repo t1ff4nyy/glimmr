@@ -2,6 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const PRODUCT_BARCODE = "8809640734427"; // Replace with your barcode
     const PRODUCT_PAGE_URL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
 
+    const searchInput = document.getElementById('search-bar');
+    const dropdownList = document.getElementById('dropdown-list');
+
+    // Disable dropdown suggestions by hiding it and clearing functionality
+    function disableDropdown() {
+        dropdownList.style.display = 'none';
+    }
+
+    searchInput.addEventListener('input', disableDropdown);
+
     function startScanner() {
         console.log("Initializing Quagga...");
 
