@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Open sidebar with ingredient details
     document.querySelectorAll('.ingredient').forEach(ingredient => {
         ingredient.addEventListener('click', () => {
-            const ingredientName = ingredient.innerText;
+            const ingredientName = ingredient.innerText.trim();
             const description = ingredientDescriptions[ingredientName] || "Description not available.";
             document.getElementById('ingredient-name').innerText = ingredientName;
             document.getElementById('ingredient-description').innerText = description;
@@ -100,3 +100,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     startScanner();
 });
+
