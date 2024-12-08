@@ -35,23 +35,64 @@
         .container {
             height: calc(100vh - 120px); /* Full height minus the new top bar height */
             width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background Image */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: url('https://en-chatelaine.mblycdn.com/ench/resized/2020/04/1600x1200/bestselling-skincare-products-at-sephora.jpg') no-repeat center center;
             background-size: cover;
-            position: relative;
+            filter: brightness(50%); /* Dim the background */
+            z-index: 0;
         }
 
         /* Barcode Text */
         .barcode-text {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             color: white;
-            font-size: 4rem; /* Large font size */
+            font-size: 3.5rem; /* Adjusted font size */
             font-family: 'Poppins', sans-serif; /* Rounded, bold font */
             font-weight: 700; /* Bold weight */
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5); /* Lighter and larger shadow */
+            text-shadow: 8px 8px 5px rgba(0, 0, 0, 0.6); /* Slightly lighter shadow */
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-top: 50px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .search-section p {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .search-bar {
+            width: 300px;
+            height: 40px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         /* Scanner Container (Hidden initially) */
@@ -69,8 +110,13 @@
 
     <!-- Main Content -->
     <div class="container">
+        <div class="background"></div>
         <div class="barcode-text">Scan Your Barcode Here</div>
         <div id="scanner-container"></div>
+        <div class="search-section">
+            <p>Or search for your product</p>
+            <input class="search-bar" type="text" placeholder="Enter product name or barcode">
+        </div>
     </div>
 
     <script>
