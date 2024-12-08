@@ -37,7 +37,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Adjust to start from the top */
+            justify-content: flex-start;
             align-items: center;
             padding: 40px 20px;
         }
@@ -68,7 +68,7 @@
             margin-top: 0;
             text-align: center;
             position: relative;
-            top: 20px; /* Slightly higher */
+            top: 20px;
         }
 
         /* Search Section */
@@ -77,7 +77,7 @@
             max-width: 600px;
             text-align: center;
             z-index: 1;
-            margin-top: 410px; /* Move it higher by reducing margin */
+            margin-top: 410px;
         }
 
         .search-section p {
@@ -126,6 +126,38 @@
             width: 25px;
         }
 
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 105px; /* Adjust based on the search bar position */
+            left: 20px;
+            width: 90%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
         /* Scanner Container (Hidden initially) */
         #scanner-container {
             display: none;
@@ -147,65 +179,51 @@
         <div class="search-section">
             <p>Or search for your product</p>
             <div class="search-bar-container">
-                <input class="search-bar" type="text" placeholder="Enter product name or barcode">
+                <input id="search-input" class="search-bar" type="text" placeholder="Enter product name or barcode" oninput="searchProducts()">
                 <button class="search-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon">
                 </button>
             </div>
+            <div id="dropdown" class="dropdown-menu"></div>
         </div>
     </div>
 
     <script>
-        const APDCF = "8809640734427"; // Barcode for product 1
-        const APDCFURL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
-        const S1MCHCSS = "8809576261592"; // Barcode for product 2
-        const S1MCHCSSURL = "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html";
+        // Products data
+        const products = [
+            { name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam", keyword: "quercetinol", url: "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html" },
+            { name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum", keyword: "madagascar", url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html" }
+        ];
 
-        function startScanner() {
-            console.log("Initializing Quagga...");
+        // Search function to filter products and show matching dropdown
+        function searchProducts() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const dropdown = document.getElementById("dropdown");
 
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector("#scanner-container"),
-                    constraints: {
-                        facingMode: "environment",
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 },
-                    }
-                },
-                decoder: {
-                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
-                },
-                locate: true
-            }, function (err) {
-                if (err) {
-                    console.error("Quagga initialization failed: ", err);
-                    return;
-                }
+            // Clear previous suggestions
+            dropdown.innerHTML = '';
 
-                console.log("Quagga initialized successfully.");
-                Quagga.start();
-            });
+            // Filter products by query
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
 
-            Quagga.onDetected(function (result) {
-                const barcode = result.codeResult.code;
-                console.log("Barcode detected: ", barcode);
-
-                if (barcode === APDCF) {
-                    console.log("Navigating to product page...");
-                    window.location.href = APDCFURL;
-                } else if (barcode === S1MCHCSS) {
-                    console.log("Navigating to product page...");
-                    window.location.href = S1MCHCSSURL;
-                } else {
-                    console.log("Barcode does not match predefined values.");
-                }
-            });
+            if (filteredProducts.length > 0) {
+                dropdown.style.display = 'block';
+                filteredProducts.forEach(product => {
+                    const item = document.createElement("div");
+                    item.className = "dropdown-item";
+                    item.innerHTML = product.name.replace(new RegExp(query, 'gi'), (match) => `<span class="highlight">${match}</span>`);
+                    item.onclick = () => window.location.href = product.url;
+                    dropdown.appendChild(item);
+                });
+            } else {
+                dropdown.style.display = 'none';
+            }
         }
 
-        window.onload = startScanner;
+        window.onload = () => {
+            // Initialize Quagga scanner if needed
+            // startScanner();
+        };
     </script>
 </body>
 </html>
