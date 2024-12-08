@@ -4,89 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #ingredients-container {
-            margin: 20px 0;
-        }
-        .ingredient-link {
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .ingredient-link:hover {
-            color: darkblue;
-        }
-        #info-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background-color: #f9f9f9;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            display: none; /* Hidden by default */
-            overflow-y: auto;
-        }
-        #info-panel h2 {
-            margin-top: 0;
-        }
-        #info-panel .close-btn {
-            background-color: red;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam</h1>
-    <p><strong>Price:</strong> $16.85</p>
+    <div class="content">
+        <h1>ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam</h1>
+        <p class="price"><strong>Price:</strong> $16.85</p>
+        <p class="ingredients">
+            <strong>Key Ingredients:</strong> 
+            <span class="ingredient" data-ingredient="Heartleaf">Heartleaf</span>, 
+            <span class="ingredient" data-ingredient="Quercetinol">Quercetinol</span>, 
+            <span class="ingredient" data-ingredient="Centella Asiatica">Centella Asiatica</span>, 
+            <span class="ingredient" data-ingredient="Green Tea Extract">Green Tea Extract</span>
+        </p>
+        <a href="homepage.html" class="back-link">Go Back to Home</a>
+    </div>
 
-    <p id="ingredients-container">
-        <strong>Key Ingredients:</strong> 
-        <span class="ingredient-link" data-ingredient="Heartleaf">Heartleaf</span>, 
-        <span class="ingredient-link" data-ingredient="Quercetinol">Quercetinol</span>, 
-        <span class="ingredient-link" data-ingredient="Centella Asiatica">Centella Asiatica</span>, 
-        <span class="ingredient-link" data-ingredient="Green Tea Extract">Green Tea Extract</span>.
-    </p>
-
-    <a href="homepage.html">Go Back to Home</a>
-
-    <!-- Right-side panel for ingredient details -->
-    <div id="info-panel">
-        <button class="close-btn" onclick="closePanel()">Close</button>
+    <!-- Sidebar -->
+    <div id="info-panel" class="sidebar">
+        <button class="close-btn" onclick="closePanel()">×</button>
         <h2 id="ingredient-name">Ingredient Name</h2>
         <p id="ingredient-description">Description will appear here.</p>
     </div>
 
-    <script>
-        // Ingredient descriptions
-        const ingredientDescriptions = {
-            "Heartleaf": "Heartleaf is known for its anti-inflammatory properties and is great for soothing irritated skin.",
-            "Quercetinol": "Quercetinol is a powerful antioxidant that helps protect the skin from environmental damage.",
-            "Centella Asiatica": "Centella Asiatica promotes healing and improves skin elasticity, making it a popular choice for skincare.",
-            "Green Tea Extract": "Green Tea Extract is rich in antioxidants and helps reduce signs of aging while calming the skin."
-        };
-
-        // Open panel with ingredient details
-        document.querySelectorAll('.ingredient-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const ingredient = link.getAttribute('data-ingredient');
-                document.getElementById('ingredient-name').innerText = ingredient;
-                document.getElementById('ingredient-description').innerText = ingredientDescriptions[ingredient] || "Description not available.";
-                document.getElementById('info-panel').style.display = 'block';
-            });
-        });
-
-        // Close panel
-        function closePanel() {
-            document.getElementById('info-panel').style.display = 'none';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
