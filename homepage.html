@@ -19,21 +19,21 @@
         /* Black Top Bar with Sephora Logo */
         .top-bar {
             background-color: black;
-            height: 60px;
+            height: 80px; /* Increased height */
             width: 100%;
             display: flex;
+            justify-content: center; /* Center logo horizontally */
             align-items: center;
-            padding: 0 20px;
             box-sizing: border-box;
         }
 
         .top-bar img {
-            height: 40px;
+            height: 60px; /* Increased logo size */
         }
 
         /* Main Content Area */
         .container {
-            height: calc(100vh - 60px); /* Full height minus the top bar */
+            height: calc(100vh - 80px); /* Full height minus the new top bar height */
             width: 100%;
             background: url('https://akns-images.eonline.com/eol_images/Entire_Site/2024931/rs_1024x759-241031173455-Sephora_Sale_2.jpg?fit=around%7C1024:759&output-quality=90&crop=1024:759;center,top') no-repeat center center;
             background-size: cover;
