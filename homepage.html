@@ -68,7 +68,7 @@
             margin-top: 0;
             text-align: center;
             position: relative;
-            top: 20px; /* Moved slightly lower */
+            top: -20px; /* Slightly higher */
         }
 
         /* Search Section */
@@ -78,8 +78,6 @@
             text-align: center;
             z-index: 1;
             margin-bottom: 10px;
-            position: relative;
-            top: -100px; /* Moved much higher */
         }
 
         .search-section p {
@@ -144,6 +142,8 @@
     <!-- Main Content -->
     <div class="container">
         <div class="background"></div>
+        <div class="barcode-text">Scan Your Barcode Here</div>
+        <div id="scanner-container"></div>
         <div class="search-section">
             <p>Or search for your product</p>
             <div class="search-bar-container">
@@ -153,8 +153,6 @@
                 </button>
             </div>
         </div>
-        <div class="barcode-text">Scan Your Barcode Here</div>
-        <div id="scanner-container"></div>
     </div>
 
     <script>
