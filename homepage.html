@@ -126,16 +126,36 @@
             width: 25px;
         }
 
-        /* Scanner Container (Visible during scanning) */
-        #scanner-container {
-            display: none;
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            position: relative;
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 105px;
+            left: 20px;
+            width: 90%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             z-index: 2;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .highlight {
+            font-weight: bold;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -154,58 +174,44 @@
         <div class="search-section">
             <p>Or search for your product</p>
             <div class="search-bar-container">
-                <input id="search-input" class="search-bar" type="text" placeholder="Enter product name or barcode">
+                <input id="search-input" class="search-bar" type="text" placeholder="Enter product name or barcode" autocomplete="off">
                 <button class="search-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search Icon">
                 </button>
             </div>
+            <div id="dropdown" class="dropdown-menu"></div>
         </div>
     </div>
 
     <script>
-        const PRODUCT_BARCODE = "8809640734427";
-        const PRODUCT_PAGE_URL = "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html";
+        // Products data
+        const products = [
+            { name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam", keyword: "quercetinol", url: "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html" },
+            { name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum", keyword: "madagascar", url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html" }
+        ];
 
-        function startScanner() {
-            console.log("Initializing Quagga...");
+        function searchProducts() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const dropdown = document.getElementById("dropdown");
 
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector("#scanner-container"),
-                    constraints: {
-                        facingMode: "user",
-                        width: { ideal: 1920 },
-                        height: { ideal: 1080 }
-                    }
-                },
-                decoder: {
-                    readers: ["ean_reader", "upc_reader"]
-                },
-                locate: true
-            }, function (err) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                Quagga.start();
-            });
+            dropdown.innerHTML = '';
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
 
-            Quagga.onDetected(function (result) {
-                const barcode = result.codeResult.code;
-                if (barcode === PRODUCT_BARCODE) {
-                    window.location.href = PRODUCT_PAGE_URL;
-                }
-            });
+            if (filteredProducts.length > 0) {
+                dropdown.style.display = 'block';
+                filteredProducts.forEach(product => {
+                    const item = document.createElement("div");
+                    item.className = "dropdown-item";
+                    item.innerHTML = product.name.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
+                    item.onclick = () => window.location.href = product.url;
+                    dropdown.appendChild(item);
+                });
+            } else {
+                dropdown.style.display = 'none';
+            }
         }
 
-        document.getElementById('search-input').addEventListener('input', () => {
-            // Disable dropdown functionality
-            console.log("Search triggered (dropdown disabled).");
-        });
-
-        startScanner();
+        document.getElementById("search-input").addEventListener("input", searchProducts);
     </script>
 </body>
 </html>
