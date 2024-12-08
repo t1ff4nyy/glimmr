@@ -130,7 +130,7 @@ h1 {
 .sidebar {
     position: fixed;
     top: 0;
-    right: -300px;
+    right: -600px; /* Move the sidebar further to the left initially */
     width: 300px;
     height: 100%;
     background-color: white;
@@ -142,7 +142,7 @@ h1 {
 }
 
 .sidebar.open {
-    right: 0;
+    right: -300px; /* Open the sidebar further to the left */
 }
 
 .sidebar h2 {
