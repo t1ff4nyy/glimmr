@@ -19,28 +19,27 @@
         /* Black Top Bar with Sephora Logo */
         .top-bar {
             background-color: black;
-            height: 120px; /* Increased height */
+            height: 120px;
             width: 100%;
             display: flex;
-            justify-content: center; /* Center logo horizontally */
+            justify-content: center;
             align-items: center;
-            box-sizing: border-box;
         }
 
         .top-bar img {
-            height: 100px; /* Increased logo size */
+            height: 100px;
         }
 
         /* Main Content Area */
         .container {
-            height: calc(100vh - 120px); /* Full height minus the new top bar height */
+            height: calc(100vh - 120px);
             width: 100%;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
         }
 
         /* Background Image */
@@ -52,24 +51,24 @@
             height: 100%;
             background: url('https://en-chatelaine.mblycdn.com/ench/resized/2020/04/1600x1200/bestselling-skincare-products-at-sephora.jpg') no-repeat center center;
             background-size: cover;
-            filter: brightness(50%); /* Dim the background */
+            filter: brightness(50%);
             z-index: 0;
         }
 
         /* Barcode Text */
         .barcode-text {
             color: white;
-            font-size: 3.5rem; /* Adjusted font size */
-            font-family: 'Poppins', sans-serif; /* Rounded, bold font */
-            font-weight: 700; /* Bold weight */
+            font-size: 3.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 8px 8px 5px rgba(0, 0, 0, 0.6); /* Slightly lighter shadow */
+            text-shadow: 8px 8px 5px rgba(0, 0, 0, 0.6);
             z-index: 1;
-            margin-top: 0; /* Remove extra margin */
+            margin-top: 0;
             text-align: center;
             position: relative;
-            top: -50px; /* Position higher */
+            top: -20px; /* Slightly higher */
         }
 
         /* Search Section */
@@ -78,14 +77,14 @@
             max-width: 600px;
             text-align: center;
             z-index: 1;
-            margin-bottom: 20px; /* Add spacing */
+            margin-bottom: 10px;
         }
 
         .search-section p {
             color: white;
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
         }
 
@@ -93,7 +92,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px; /* Space between input and button */
+            gap: 10px;
         }
 
         .search-bar {
@@ -169,9 +168,9 @@
                 inputStream: {
                     name: "Live",
                     type: "LiveStream",
-                    target: document.querySelector("#scanner-container"), // Scanner element
+                    target: document.querySelector("#scanner-container"),
                     constraints: {
-                        facingMode: "environment", // Use back camera
+                        facingMode: "environment",
                         width: { ideal: 1280 },
                         height: { ideal: 720 },
                     }
@@ -179,7 +178,7 @@
                 decoder: {
                     readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
                 },
-                locate: true // Enable locating the barcode for better accuracy
+                locate: true
             }, function (err) {
                 if (err) {
                     console.error("Quagga initialization failed: ", err);
@@ -190,7 +189,6 @@
                 Quagga.start();
             });
 
-            // Event listener for barcode detection
             Quagga.onDetected(function (result) {
                 const barcode = result.codeResult.code;
                 console.log("Barcode detected: ", barcode);
