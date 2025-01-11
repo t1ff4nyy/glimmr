@@ -7,6 +7,8 @@
     position: relative; /* Critical to position the dropdown relative to this container */
     width: 100%; /* Ensure it spans the full width */
     max-width: 400px; /* Matches the dropdown's max width */
+    margin-top: 0;
+    top: 50px;
 }
 
 /* Input field styling */
