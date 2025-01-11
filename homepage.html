@@ -24,6 +24,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
         }
 
         .top-bar img {
@@ -32,7 +36,7 @@
 
         /* Main Content Area */
         .container {
-            height: calc(100vh - 120px);
+            height: 100%;
             width: 100%;
             position: relative;
             display: flex;
@@ -40,6 +44,7 @@
             justify-content: flex-start;
             align-items: center;
             padding: 40px 20px;
+            padding-top: 160px; /* Add padding to account for fixed top bar */
         }
 
         /* Background Image */
@@ -182,7 +187,6 @@
     <div class="top-bar">
         <img src="https://logos-world.net/wp-content/uploads/2022/02/Sephora-Emblem.png" alt="Sephora Logo">
     </div>
-
     <!-- Main Content -->
     <div class="container">
         <div class="background"></div>
@@ -199,87 +203,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const products = [
-            { name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam", keyword: "quercetinol", url: "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html" },
-            { name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum", keyword: "madagascar", url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html" }
-        ];
-
-        const barcodes = {
-            "8809640734427": "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html",
-            "8809576261592": "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html"
-        };
-
-        function startScanner() {
-            console.log("Initializing Quagga...");
-
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector("#scanner-container"),
-                    constraints: {
-                        facingMode: "environment",
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 },
-                    }
-                },
-                decoder: {
-                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
-                },
-                locate: true
-            }, function (err) {
-                if (err) {
-                    console.error("Quagga initialization failed: ", err);
-                    return;
-                }
-
-                console.log("Quagga initialized successfully.");
-                Quagga.start();
-            });
-
-            Quagga.onDetected(function (result) {
-                const barcode = result.codeResult.code;
-                console.log("Barcode detected: ", barcode);
-
-                if (barcodes[barcode]) {
-                    console.log("Navigating to product page...");
-                    window.location.href = barcodes[barcode];
-                } else {
-                    console.log("Barcode does not match predefined values.");
-                }
-            });
-        }
-
-        function searchProducts() {
-            const query = document.getElementById("search-input").value.toLowerCase();
-            const dropdown = document.getElementById("dropdown");
-            dropdown.innerHTML = '';
-
-            if (query.length > 0) {
-                const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
-
-                if (filteredProducts.length > 0) {
-                    dropdown.style.display = 'block';
-                    filteredProducts.forEach(product => {
-                        const item = document.createElement("div");
-                        item.className = "dropdown-item";
-                        item.innerHTML = product.name.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
-                        item.onclick = () => window.location.href = product.url;
-                        dropdown.appendChild(item);
-                    });
-                } else {
-                    dropdown.style.display = 'none';
-                }
-            } else {
-                dropdown.style.display = 'none';
-            }
-        }
-
-        document.getElementById("search-input").addEventListener("input", searchProducts);
-
-        window.onload = startScanner;
-    </script>
 </body>
 </html>
