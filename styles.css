@@ -7,14 +7,13 @@
     position: relative; /* Critical to position the dropdown relative to this container */
     width: 100%; /* Ensure it spans the full width */
     max-width: 400px; /* Matches the dropdown's max width */
-    height: 450px;
+    top: 1000px;
 }
 
 /* Input field styling */
 .search-bar {
     width: 100%; /* Full width within the container */
     max-width: 400px; /* Align width with container */
-    top: calc(100px + 150px);
     height: 50px;
     padding: 10px;
     border: none;
