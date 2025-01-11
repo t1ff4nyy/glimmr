@@ -150,8 +150,6 @@
         </div>
 
         <div class="section" id="additional-ingredients-container">
-            <p><strong>Additional Ingredients:</strong></p>
-
             <div class="ingredients-category">
                 <strong>Perfuming:</strong>
                 <button class="ingredient-btn" data-ingredient="T-Butyl Alcohol">T-Butyl Alcohol</button>
@@ -166,3 +164,51 @@
                 <strong>Solvent:</strong>
                 <button class="ingredient-btn" data-ingredient="Water">Water</button>
                 <button class="ingredient-btn" data-ingredient="Dibutyl Adipate">Dibutyl Adipate</button>
+                <button class="ingredient-btn" data-ingredient="Propanediol">Propanediol</button>
+                <button class="ingredient-btn" data-ingredient="1,2-Hexanediol">1,2-Hexanediol</button>
+                <button class="ingredient-btn" data-ingredient="Butylene Glycol">Butylene Glycol</button>
+                <button class="ingredient-btn" data-ingredient="T-Butyl Alcohol">T-Butyl Alcohol</button>
+                <button class="ingredient-btn" data-ingredient="Pentylene Glycol">Pentylene Glycol</button>
+            </div>
+
+            <div class="ingredients-category">
+                <strong>Surfactant/cleansing:</strong>
+                <button class="ingredient-btn" data-ingredient="Decyl Glucoside">Decyl Glucoside</button>
+                <button class="ingredient-btn" data-ingredient="Sodium Stearoyl Glutamate">Sodium Stearoyl Glutamate</button>
+            </div>
+
+            <div class="ingredients-category">
+                <strong>Viscosity controlling:</strong>
+                <button class="ingredient-btn" data-ingredient="Behenyl Alcohol">Behenyl Alcohol</button>
+                <button class="ingredient-btn" data-ingredient="Poly C10-30 Alkyl Acrylate">Poly C10-30 Alkyl Acrylate</button>
+                <button class="ingredient-btn" data-ingredient="Carbomer">Carbomer</button>
+                <button class="ingredient-btn" data-ingredient="Acrylates /​C10-30 Alkyl Acrylate Crosspolymer">Acrylates /​C10-30 Alkyl Acrylate Crosspolymer</button>
+                <button class="ingredient-btn" data-ingredient="Polyacrylate Crosspolymer-6">Polyacrylate Crosspolymer-6</button>
+                <button class="ingredient-btn" data-ingredient="Xanthan Gum">Xanthan Gum</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-panel">
+        <button class="close-btn" onclick="closePanel()">Close</button>
+        <h2 id="ingredient-name">Ingredient Name</h2>
+        <p id="ingredient-description">Description will appear here.</p>
+    </div>
+
+    <script>
+        // Ingredient descriptions
+        const ingredientDescriptions = {
+            "Niacinamide": "Niacinamide helps reduce acne, brightens skin, and strengthens the skin barrier.",
+            "Centella Asiatica Extract": "Centella Asiatica promotes healing and improves skin elasticity.",
+            "Camellia Sinensis Leaf Extract": "Rich in antioxidants, it calms the skin and reduces signs of aging.",
+            "Tocopherol": "Tocopherol (Vitamin E) is a potent antioxidant that protects the skin.",
+            "Adenosine": "Adenosine has anti-aging benefits and improves skin smoothness.",
+            "Glycerin": "Glycerin is a powerful humectant that keeps skin hydrated.",
+            "Sodium Hyaluronate": "Sodium Hyaluronate (10Ppm) provides deep hydration to the skin.",
+            "Hyaluronic Acid": "Hyaluronic Acid (0.01Ppm) helps retain moisture and plumps the skin.",
+            "Diethylamino Hydroxybenzoyl Hexyl Benzoate": "A chemical sunscreen providing UVA protection.",
+            "Ethylhexyl Triazone": "A highly effective UVB filter for sunscreen formulations.",
+            "Methylene Bis-Benzotriazolyl Tetramethylbutylphenol": "A broad-spectrum UV filter that protects against UVA and UVB.",
+            "Diethylhexyl Butamido Triazone": "A photostable UVB filter ensuring long-lasting sun protection.",
+            "Tromethamine": "A buffering agent that maintains pH stability.",
+            "Dibutyl Adipate": "An emollient that enhances product spreadability.
