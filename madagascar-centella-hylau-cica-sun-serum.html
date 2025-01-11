@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
         .top-bar {
             background-color: black;
             height: 120px;
-            width: 100%;
+            width: 150%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -40,13 +40,15 @@
         .sections-container {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: center; /* Centers the container */
             gap: 20px;
-            width: 100%;
+            width: 80%; /* Restricts the overall container width */
+            margin: 0 auto; /* Centers horizontally */
         }
 
         .section {
             flex: 1;
+            max-width: 300px; /* Restricts each section's maximum width */
             background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
