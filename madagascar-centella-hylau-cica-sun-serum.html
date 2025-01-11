@@ -13,7 +13,6 @@
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background-image.jpg') no-repeat center center fixed;
             background-size: cover;
         }
-            /* Black Top Bar with Sephora Logo */
         .top-bar {
             background-color: black;
             height: 120px;
@@ -26,7 +25,7 @@
         .top-bar img {
             height: 100px;
         }
-           /* Main Content Area */
+
         .container {
             height: calc(100vh - 120px);
             width: 100%;
@@ -37,6 +36,15 @@
             align-items: center;
             padding: 40px 20px;
         }
+
+        .sections-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+        }
+
         .section {
             flex: 1;
             background-color: rgba(255, 255, 255, 0.9);
@@ -44,13 +52,16 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         h1, p {
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
+
         h1 {
             color: #fff;
             font-size: 2em;
         }
+
         .ingredient-btn {
             display: block;
             margin: 5px 0;
@@ -63,9 +74,11 @@
             text-align: left;
             border-radius: 5px;
         }
+
         .ingredient-btn:hover {
             background-color: #c8e6c9;
         }
+
         #info-panel {
             position: fixed;
             top: 0;
@@ -78,10 +91,12 @@
             display: none;
             overflow-y: auto;
         }
+
         #info-panel h2 {
             margin-top: 0;
             color: #4caf50;
         }
+
         #info-panel .close-btn {
             background-color: #f44336;
             color: white;
@@ -90,7 +105,8 @@
             cursor: pointer;
             border-radius: 5px;
         }
-         .background {
+
+        .background {
             position: absolute;
             top: 0;
             left: 0;
@@ -109,99 +125,100 @@
     </div>
 
     <div class="container">
-        <div class="section" id="ingredients-container">
-            <p><strong>Key Ingredients:</strong></p>
+        <div class="sections-container">
+            <div class="section" id="ingredients-container">
+                <p><strong>Key Ingredients:</strong></p>
 
-            <div class="ingredients-category">
-                <strong>Anti-acne:</strong>
-                <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+                <div class="ingredients-category">
+                    <strong>Anti-acne:</strong>
+                    <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Antioxidant:</strong>
+                    <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Camellia Sinensis Leaf Extract">Camellia Sinensis Leaf Extract</button>
+                    <button class="ingredient-btn" data-ingredient="Tocopherol">Tocopherol</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Cell-communicating ingredient:</strong>
+                    <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+                    <button class="ingredient-btn" data-ingredient="Adenosine">Adenosine</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Skin brightening:</strong>
+                    <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Skin-identical ingredient:</strong>
+                    <button class="ingredient-btn" data-ingredient="Glycerin">Glycerin</button>
+                    <button class="ingredient-btn" data-ingredient="Sodium Hyaluronate">Sodium Hyaluronate (10Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Hyaluronic Acid">Hyaluronic Acid (0.01Ppm)</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Soothing:</strong>
+                    <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Camellia Sinensis Leaf Extract">Camellia Sinensis Leaf Extract</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Sunscreen:</strong>
+                    <button class="ingredient-btn" data-ingredient="Diethylamino Hydroxybenzoyl Hexyl Benzoate">Diethylamino Hydroxybenzoyl Hexyl Benzoate</button>
+                    <button class="ingredient-btn" data-ingredient="Ethylhexyl Triazone">Ethylhexyl Triazone</button>
+                    <button class="ingredient-btn" data-ingredient="Methylene Bis-Benzotriazolyl Tetramethylbutylphenol">Methylene Bis-Benzotriazolyl Tetramethylbutylphenol</button>
+                    <button class="ingredient-btn" data-ingredient="Diethylhexyl Butamido Triazone">Diethylhexyl Butamido Triazone</button>
+                </div>
             </div>
 
-            <div class="ingredients-category">
-                <strong>Antioxidant:</strong>
-                <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Camellia Sinensis Leaf Extract">Camellia Sinensis Leaf Extract</button>
-                <button class="ingredient-btn" data-ingredient="Tocopherol">Tocopherol</button>
+            <div class="section" id="other-ingredients-container">
+                <p><strong>Other Ingredients:</strong></p>
+
+                <div class="ingredients-category">
+                    <strong>Buffering:</strong>
+                    <button class="ingredient-btn" data-ingredient="Tromethamine">Tromethamine</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Emollient:</strong>
+                    <button class="ingredient-btn" data-ingredient="Dibutyl Adipate">Dibutyl Adipate</button>
+                    <button class="ingredient-btn" data-ingredient="Coco-Caprylate/Caprate">Coco-Caprylate/Caprate</button>
+                    <button class="ingredient-btn" data-ingredient="Caprylyl Methicone">Caprylyl Methicone</button>
+                    <button class="ingredient-btn" data-ingredient="Brassica Oleracea Italica (Broccoli) Sprout Extract">Brassica Oleracea Italica (Broccoli) Sprout Extract</button>
+                    <button class="ingredient-btn" data-ingredient="Behenyl Alcohol">Behenyl Alcohol</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Emulsifying:</strong>
+                    <button class="ingredient-btn" data-ingredient="Polyglyceryl-3 Methylglucose Distearate">Polyglyceryl-3 Methylglucose Distearate</button>
+                    <button class="ingredient-btn" data-ingredient="Sodium Stearoyl Glutamate">Sodium Stearoyl Glutamate</button>
+                </div>
+
+                <div class="ingredients-category">
+                    <strong>Moisturizer/humectant:</strong>
+                    <button class="ingredient-btn" data-ingredient="Propanediol">Propanediol</button>
+                    <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+                    <button class="ingredient-btn" data-ingredient="Glycerin">Glycerin</button>
+                    <button class="ingredient-btn" data-ingredient="Butylene Glycol">Butylene Glycol</button>
+                    <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Sodium Hyaluronate">Sodium Hyaluronate (10Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Hydrolyzed Hyaluronic Acid">Hydrolyzed Hyaluronic Acid (Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Inositol">Inositol</button>
+                    <button class="ingredient-btn" data-ingredient="Hyaluronic Acid">Hyaluronic Acid (0.01Ppm)</button>
+                    <button class="ingredient-btn" data-ingredient="Pentylene Glycol">Pentylene Glycol</button>
+                </div>
             </div>
 
-            <div class="ingredients-category">
-                <strong>Cell-communicating ingredient:</strong>
-                <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
-                <button class="ingredient-btn" data-ingredient="Adenosine">Adenosine</button>
-            </div>
+            <div class="section" id="additional-ingredients-container">
+                <div class="ingredients-category">
+                    <strong>Perfuming:</strong>
+                    <button class="ingredient-btn" data-ingredient="T-Butyl Alcohol">T-Butyl Alcohol</button>
+                </div>
 
-            <div class="ingredients-category">
-                <strong>Skin brightening:</strong>
-                <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
-            </div>
-
-            <div class="ingredients-category">
-                <strong>Skin-identical ingredient:</strong>
-                <button class="ingredient-btn" data-ingredient="Glycerin">Glycerin</button>
-                <button class="ingredient-btn" data-ingredient="Sodium Hyaluronate">Sodium Hyaluronate (10Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Hyaluronic Acid">Hyaluronic Acid (0.01Ppm)</button>
-            </div>
-
-            <div class="ingredients-category">
-                <strong>Soothing:</strong>
-                <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Camellia Sinensis Leaf Extract">Camellia Sinensis Leaf Extract</button>
-            </div>
-
-            <div class="ingredients-category">
-                <strong>Sunscreen:</strong>
-                <button class="ingredient-btn" data-ingredient="Diethylamino Hydroxybenzoyl Hexyl Benzoate">Diethylamino Hydroxybenzoyl Hexyl Benzoate</button>
-                <button class="ingredient-btn" data-ingredient="Ethylhexyl Triazone">Ethylhexyl Triazone</button>
-                <button class="ingredient-btn" data-ingredient="Methylene Bis-Benzotriazolyl Tetramethylbutylphenol">Methylene Bis-Benzotriazolyl Tetramethylbutylphenol</button>
-                <button class="ingredient-btn" data-ingredient="Diethylhexyl Butamido Triazone">Diethylhexyl Butamido Triazone</button>
-            </div>
-        </div>
-
-        <div class="section" id="other-ingredients-container">
-            <p><strong>Other Ingredients:</strong></p>
-
-            <div class="ingredients-category">
-                <strong>Buffering:</strong>
-                <button class="ingredient-btn" data-ingredient="Tromethamine">Tromethamine</button>
-            </div>
-
-            <div class="ingredients-category">
-                <strong>Emollient:</strong>
-                <button class="ingredient-btn" data-ingredient="Dibutyl Adipate">Dibutyl Adipate</button>
-                <button class="ingredient-btn" data-ingredient="Coco-Caprylate/Caprate">Coco-Caprylate/Caprate</button>
-                <button class="ingredient-btn" data-ingredient="Caprylyl Methicone">Caprylyl Methicone</button>
-                <button class="ingredient-btn" data-ingredient="Brassica Oleracea Italica (Broccoli) Sprout Extract">Brassica Oleracea Italica (Broccoli) Sprout Extract</button>
-                <button class="ingredient-btn" data-ingredient="Behenyl Alcohol">Behenyl Alcohol</button>
-            </div>
-
-            <div class="ingredients-category">
-                <strong>Emulsifying:</strong>
-                <button class="ingredient-btn" data-ingredient="Polyglyceryl-3 Methylglucose Distearate">Polyglyceryl-3 Methylglucose Distearate</button>
-                <button class="ingredient-btn" data-ingredient="Sodium Stearoyl Glutamate">Sodium Stearoyl Glutamate</button>
-            </div>
-
-            <div class="ingredients-category">
-                <strong>Moisturizer/humectant:</strong>
-                <button class="ingredient-btn" data-ingredient="Propanediol">Propanediol</button>
-                <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
-                <button class="ingredient-btn" data-ingredient="Glycerin">Glycerin</button>
-                <button class="ingredient-btn" data-ingredient="Butylene Glycol">Butylene Glycol</button>
-                <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Sodium Hyaluronate">Sodium Hyaluronate (10Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Hydrolyzed Hyaluronic Acid">Hydrolyzed Hyaluronic Acid (Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Inositol">Inositol</button>
-                <button class="ingredient-btn" data-ingredient="Hyaluronic Acid">Hyaluronic Acid (0.01Ppm)</button>
-                <button class="ingredient-btn" data-ingredient="Pentylene Glycol">Pentylene Glycol</button>
-            </div>
-        </div>
-
-        <div class="section" id="additional-ingredients-container">
-            <div class="ingredients-category">
-                <strong>Perfuming:</strong>
-                <button class="ingredient-btn" data-ingredient="T-Butyl Alcohol">T-Butyl Alcohol</button>
-            </div>
-
-            <div class="ingredients-category">
+                    <div class="ingredients-category">
                 <strong>Preservative:</strong>
                 <button class="ingredient-btn" data-ingredient="Ethylhexylglycerin">Ethylhexylglycerin</button>
             </div>
