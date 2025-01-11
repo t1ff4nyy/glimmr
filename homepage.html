@@ -202,37 +202,84 @@
 
     <script>
         const products = [
-            { name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam", keyword: "quercetinol", url: "https://example.com/product1" },
-            { name: "CeraVe Hydrating Cleanser", keyword: "hydrating", url: "https://example.com/product2" }
+            { name: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam", keyword: "quercetinol", url: "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html" },
+            { name: "Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum", keyword: "madagascar", url: "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html" }
         ];
 
-        const searchInput = document.getElementById("search-input");
-        const dropdown = document.getElementById("dropdown");
+        const barcodes = {
+            "8809640734427": "https://t1ff4nyy.github.io/glimmr/anua-quercetinol-pore-deep-cleansing-foam.html",
+            "8809576261592": "https://t1ff4nyy.github.io/glimmr/madagascar-centella-hylau-cica-sun-serum.html"
+        };
 
-        searchInput.addEventListener("input", () => {
-            const query = searchInput.value.toLowerCase();
-            dropdown.innerHTML = "";
+        function startScanner() {
+            console.log("Initializing Quagga...");
 
-            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query) || product.keyword.toLowerCase().includes(query));
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector("#scanner-container"),
+                    constraints: {
+                        facingMode: "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 },
+                    }
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader"],
+                },
+                locate: true
+            }, function (err) {
+                if (err) {
+                    console.error("Quagga initialization failed: ", err);
+                    return;
+                }
 
-            if (filteredProducts.length > 0) {
-                dropdown.style.display = "block";
-                filteredProducts.forEach(product => {
-                    const item = document.createElement("div");
-                    item.classList.add("dropdown-item");
-                    item.innerHTML = `<a href="${product.url}" target="_blank">${product.name}</a>`;
-                    dropdown.appendChild(item);
-                });
+                console.log("Quagga initialized successfully.");
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function (result) {
+                const barcode = result.codeResult.code;
+                console.log("Barcode detected: ", barcode);
+
+                if (barcodes[barcode]) {
+                    console.log("Navigating to product page...");
+                    window.location.href = barcodes[barcode];
+                } else {
+                    console.log("Barcode does not match predefined values.");
+                }
+            });
+        }
+
+        function searchProducts() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const dropdown = document.getElementById("dropdown");
+            dropdown.innerHTML = '';
+
+            if (query.length > 0) {
+                const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+
+                if (filteredProducts.length > 0) {
+                    dropdown.style.display = 'block';
+                    filteredProducts.forEach(product => {
+                        const item = document.createElement("div");
+                        item.className = "dropdown-item";
+                        item.innerHTML = product.name.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
+                        item.onclick = () => window.location.href = product.url;
+                        dropdown.appendChild(item);
+                    });
+                } else {
+                    dropdown.style.display = 'none';
+                }
             } else {
-                dropdown.style.display = "none";
+                dropdown.style.display = 'none';
             }
-        });
+        }
 
-        document.addEventListener("click", (e) => {
-            if (!e.target.closest(".search-bar-container")) {
-                dropdown.style.display = "none";
-            }
-        });
+        document.getElementById("search-input").addEventListener("input", searchProducts);
+
+        window.onload = startScanner;
     </script>
 </body>
 </html>
