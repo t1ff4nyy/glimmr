@@ -6,33 +6,61 @@
     <title>Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .top-bar {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 10px 20px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin: 20px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top-bar h1 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .top-bar img {
+            height: 40px;
         }
         .container {
             display: flex;
             gap: 40px;
+            margin: 20px;
         }
         .section {
             flex: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .ingredients-category {
-            margin-bottom: 20px;
+        h1, p {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #fff;
+            font-size: 2em;
         }
         .ingredient-btn {
             display: block;
             margin: 5px 0;
             padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+            background-color: #e8f5e9;
+            border: 1px solid #4caf50;
+            color: #4caf50;
+            font-size: 1em;
             cursor: pointer;
             text-align: left;
+            border-radius: 5px;
         }
         .ingredient-btn:hover {
-            background-color: #e0e0e0;
+            background-color: #c8e6c9;
         }
         #info-panel {
             position: fixed;
@@ -40,27 +68,31 @@
             right: 0;
             width: 300px;
             height: 100%;
-            background-color: #f9f9f9;
+            background-color: rgba(255, 255, 255, 0.95);
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            display: none; /* Hidden by default */
+            display: none;
             overflow-y: auto;
         }
         #info-panel h2 {
             margin-top: 0;
+            color: #4caf50;
         }
         #info-panel .close-btn {
-            background-color: red;
+            background-color: #f44336;
             color: white;
             padding: 5px 10px;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum SPF50+ PA++++</h1>
-    <p><strong>Price:</strong> $12.65</p>
+    <div class="top-bar">
+        <img src="logo.png" alt="Logo">
+        <h1>Skin1004 Ingredients</h1>
+    </div>
 
     <div class="container">
         <div class="section" id="ingredients-container">
@@ -177,8 +209,7 @@
                 <button class="ingredient-btn" data-ingredient="Sodium Stearoyl Glutamate">Sodium Stearoyl Glutamate</button>
             </div>
 
-            <div class="ingredients-category">
-                <strong>Viscosity controlling:</strong>
+              <strong>Viscosity controlling:</strong>
                 <button class="ingredient-btn" data-ingredient="Behenyl Alcohol">Behenyl Alcohol</button>
                 <button class="ingredient-btn" data-ingredient="Poly C10-30 Alkyl Acrylate">Poly C10-30 Alkyl Acrylate</button>
                 <button class="ingredient-btn" data-ingredient="Carbomer">Carbomer</button>
