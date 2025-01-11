@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,28 +27,53 @@
         }
 
         .container {
-            height: calc(100vh - 120px);
             width: 100%;
-            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
             padding: 40px 20px;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 80%;
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-info img {
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            max-width: 600px;
+        }
+
+        .product-details h2 {
+            margin-top: 0;
+            color: #4caf50;
         }
 
         .sections-container {
             display: flex;
             flex-direction: row;
-            justify-content: center; /* Centers the container */
+            justify-content: center;
             gap: 20px;
-            width: 80%; /* Restricts the overall container width */
-            margin: 0 auto; /* Centers horizontally */
+            width: 80%;
+            margin: 0 auto;
         }
 
         .section {
             flex: 1;
-            max-width: 360px; /* Restricts each section's maximum width */
+            max-width: 360px;
             background-color: white;
             padding: 20px;
             border-radius: 10px;
@@ -62,6 +87,10 @@
         h1 {
             color: #fff;
             font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
         }
 
         .ingredient-btn {
@@ -127,6 +156,21 @@
     </div>
 
     <div class="container">
+        <div class="product-info">
+            <img src="product-image.jpg" alt="Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum">
+            <div class="product-details">
+                <h2>Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum</h2>
+                <p><strong>Price:</strong> $29.99</p>
+                <p><strong>Available at:</strong> <a href="https://www.sephora.com">Sephora</a>, <a href="https://www.skin1004.com">Skin1004 Official Website</a></p>
+                <p>This sun serum combines Centella Asiatica Extract with Hyaluronic Acid to provide both soothing and hydrating benefits. Perfect for daily use, it offers broad-spectrum SPF protection while keeping your skin feeling lightweight and comfortable.</p>
+            </div>
+        </div>
+
+        <h2>Usage Tips</h2>
+        <p>For best results, apply the Skin1004 Madagascar Centella Hyalu-Cica Water-Fit Sun Serum 15 minutes before sun exposure. Reapply every 2 hours, especially after swimming or sweating, to maintain optimal sun protection.</p>
+
+        <h2>Ingredients</h2>
+        
         <div class="sections-container">
             <div class="section" id="ingredients-container">
                 <p><strong>Key Ingredients:</strong></p>
