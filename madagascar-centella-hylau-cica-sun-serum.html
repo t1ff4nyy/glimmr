@@ -8,12 +8,12 @@
         body {
             font-family: Arial, sans-serif;
         }
-        #ingredients-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .ingredients-category {
+            margin-bottom: 20px;
         }
         .ingredient-btn {
+            display: block;
+            margin: 5px 0;
             padding: 10px;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
@@ -52,11 +52,51 @@
     <p><strong>Price:</strong> $12.65</p>
 
     <p><strong>Key Ingredients:</strong></p>
+
     <div id="ingredients-container">
-        <button class="ingredient-btn" data-ingredient="Heartleaf">Heartleaf</button>
-        <button class="ingredient-btn" data-ingredient="Quercetinol">Quercetinol</button>
-        <button class="ingredient-btn" data-ingredient="Centella Asiatica">Centella Asiatica</button>
-        <button class="ingredient-btn" data-ingredient="Green Tea Extract">Green Tea Extract</button>
+        <div class="ingredients-category">
+            <strong>Anti-acne:</strong>
+            <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+        </div>
+
+        <div class="ingredients-category">
+            <strong>Antioxidant:</strong>
+            <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
+            <button class="ingredient-btn" data-ingredient="Camellia Sinensis Leaf Extract">Camellia Sinensis Leaf Extract</button>
+            <button class="ingredient-btn" data-ingredient="Tocopherol">Tocopherol</button>
+        </div>
+
+        <div class="ingredients-category">
+            <strong>Cell-communicating ingredient:</strong>
+            <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+            <button class="ingredient-btn" data-ingredient="Adenosine">Adenosine</button>
+        </div>
+
+        <div class="ingredients-category">
+            <strong>Skin brightening:</strong>
+            <button class="ingredient-btn" data-ingredient="Niacinamide">Niacinamide</button>
+        </div>
+
+        <div class="ingredients-category">
+            <strong>Skin-identical ingredient:</strong>
+            <button class="ingredient-btn" data-ingredient="Glycerin">Glycerin</button>
+            <button class="ingredient-btn" data-ingredient="Sodium Hyaluronate">Sodium Hyaluronate (10Ppm)</button>
+            <button class="ingredient-btn" data-ingredient="Hyaluronic Acid">Hyaluronic Acid (0.01Ppm)</button>
+        </div>
+
+        <div class="ingredients-category">
+            <strong>Soothing:</strong>
+            <button class="ingredient-btn" data-ingredient="Centella Asiatica Extract">Centella Asiatica Extract (9,800Ppm)</button>
+            <button class="ingredient-btn" data-ingredient="Camellia Sinensis Leaf Extract">Camellia Sinensis Leaf Extract</button>
+        </div>
+
+        <div class="ingredients-category">
+            <strong>Sunscreen:</strong>
+            <button class="ingredient-btn" data-ingredient="Diethylamino Hydroxybenzoyl Hexyl Benzoate">Diethylamino Hydroxybenzoyl Hexyl Benzoate</button>
+            <button class="ingredient-btn" data-ingredient="Ethylhexyl Triazone">Ethylhexyl Triazone</button>
+            <button class="ingredient-btn" data-ingredient="Methylene Bis-Benzotriazolyl Tetramethylbutylphenol">Methylene Bis-Benzotriazolyl Tetramethylbutylphenol</button>
+            <button class="ingredient-btn" data-ingredient="Diethylhexyl Butamido Triazone">Diethylhexyl Butamido Triazone</button>
+        </div>
     </div>
 
     <a href="homepage.html">Go Back to Home</a>
@@ -71,10 +111,18 @@
     <script>
         // Ingredient descriptions
         const ingredientDescriptions = {
-            "Heartleaf": "Heartleaf is known for its anti-inflammatory properties and is great for soothing irritated skin.",
-            "Quercetinol": "Quercetinol is a powerful antioxidant that helps protect the skin from environmental damage.",
-            "Centella Asiatica": "Centella Asiatica promotes healing and improves skin elasticity, making it a popular choice for skincare.",
-            "Green Tea Extract": "Green Tea Extract is rich in antioxidants and helps reduce signs of aging while calming the skin."
+            "Niacinamide": "Niacinamide is a versatile ingredient that helps improve skin texture, reduce acne, and brighten skin tone.",
+            "Centella Asiatica Extract": "Centella Asiatica Extract promotes healing, soothes irritation, and improves skin elasticity.",
+            "Camellia Sinensis Leaf Extract": "Camellia Sinensis Leaf Extract, also known as Green Tea Extract, is rich in antioxidants and calms the skin.",
+            "Tocopherol": "Tocopherol, or Vitamin E, is a potent antioxidant that protects the skin from environmental stressors.",
+            "Adenosine": "Adenosine is a cell-communicating ingredient that helps smooth the skin and reduce the appearance of fine lines.",
+            "Glycerin": "Glycerin is a skin-identical ingredient that deeply hydrates and maintains the skin's moisture balance.",
+            "Sodium Hyaluronate": "Sodium Hyaluronate, a form of hyaluronic acid, provides intense hydration and plumps the skin.",
+            "Hyaluronic Acid": "Hyaluronic Acid is known for its ability to retain moisture, giving the skin a hydrated and youthful appearance.",
+            "Diethylamino Hydroxybenzoyl Hexyl Benzoate": "This ingredient is a UVA filter that helps protect the skin from sun damage.",
+            "Ethylhexyl Triazone": "Ethylhexyl Triazone is a highly effective UVB filter used in sunscreens.",
+            "Methylene Bis-Benzotriazolyl Tetramethylbutylphenol": "A broad-spectrum sunscreen agent that protects against both UVA and UVB rays.",
+            "Diethylhexyl Butamido Triazone": "A photostable sunscreen agent that provides strong UV protection."
         };
 
         // Open panel with ingredient details
