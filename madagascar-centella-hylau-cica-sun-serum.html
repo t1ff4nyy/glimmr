@@ -14,29 +14,34 @@
             background-size: cover;
         }
         .top-bar {
-            background-color: #1e1e1e;
-            color: white;
-            padding: 10px 20px;
+            background-color: black;
+            height: 120px;
+            width: 100%;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
+            z-index: 10;
         }
         .top-bar h1 {
             font-size: 1.5em;
             margin: 0;
         }
         .top-bar img {
-            height: 40px;
+            height: 100px;
         }
+           /* Main Content Area */
         .container {
+            height: calc(100vh - 120px);
+            width: 100%;
+            position: relative;
             display: flex;
-            gap: 40px;
-            margin: 80px 20px 20px 20px; /* Adjust margin to account for fixed top bar */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 40px 20px;
         }
         .section {
             flex: 1;
@@ -69,10 +74,10 @@
         }
         #info-panel {
             position: fixed;
-            top: 60px; /* Adjust top to stay below the top bar */
+            top: 0;
             right: 0;
             width: 300px;
-            height: calc(100% - 60px); /* Subtract height of the top bar */
+            height: 100%;
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -91,11 +96,22 @@
             cursor: pointer;
             border-radius: 5px;
         }
+         .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://en-chatelaine.mblycdn.com/ench/resized/2020/04/1600x1200/bestselling-skincare-products-at-sephora.jpg') no-repeat center center;
+            background-size: cover;
+            filter: brightness(50%);
+            z-index: 0;
+        }
     </style>
 </head>
 <body>
     <div class="top-bar">
-        <img src="logo.png" alt="Logo">
+        <img src="https://logos-world.net/wp-content/uploads/2022/02/Sephora-Emblem.png" alt="Sephora Logo">
         <h1>Skin1004 Ingredients</h1>
     </div>
 
