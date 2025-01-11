@@ -13,6 +13,7 @@
 .search-bar {
     width: 100%; /* Full width within the container */
     max-width: 400px; /* Align width with container */
+    top: calc(100px + 150px);
     height: 50px;
     padding: 10px;
     border: none;
